@@ -1,0 +1,20 @@
+
+  <table class="table">
+  <tr class="table-active">
+    <td>first name:</td>
+    <td>age:</td>
+
+  </tr>
+  {% for user in users %}
+    
+  <tr class="table-{% if loop.index is odd  %}danger{% else %}warning"{% endif %}">
+    <td>{{ user.firstname}}</td>
+    <td>{{ user.age}}</td>
+<td>
+{{ render(controller('App\\Controller\\FirstController::sayhello', {'name': 'jojo' , 'firstname': user.firstname}))}}
+</td>
+<td>mon url absolute est: {{url('first')}}</td>
+  </tr>
+   {% endfor %}
+ 
+  </table>
