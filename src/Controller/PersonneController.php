@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Personne;
 use Doctrine\Persistence\ManagerRegistry;
+use Faker\Provider\ar_JO\Person;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -133,5 +134,18 @@ $this->addFlash('success', "user update succes");
 return $this->redirectToRoute('personne.index');
     
 }
-    
+
+
+#[Route('/personne/find/{ageMin}/{ageMax}', name:'personne.find')]
+public function findPersonneTo(ManagerRegistry $doctrine, $ageMin, $ageMax): Response {
+    $repository = $doctrine->getRepository(Personne::class);
+$personnes = $repository->findPersonneAgeByIntervale($ageMin, $ageMax);
+return $this->render('personne/index.html.twig', [
+'personnes' => $personnes,
+            'isPagination' => true,
+
+]);
 }
+
+}
+

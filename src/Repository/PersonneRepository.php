@@ -48,19 +48,15 @@ class PersonneRepository extends ServiceEntityRepository
     // /**
     //  * @return Personne[] Returns an array of Personne objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findPersonneAgeByIntervale($ageMin, $ageMax)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('p.age > :ageMin and p.age < :ageMax')
+->setParameters(['ageMin' => $ageMin,'ageMax' => $ageMax])
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Personne

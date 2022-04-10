@@ -2,11 +2,17 @@
 {% block title %}{% endblock %}
 {% block body %}
 {% include "message.html.twig" %}
-
-<button type="button" class="btn btn-primary">
-  <a href="{{path('personne.alls', {age: 30})}}"> Personnes 30ans</a> <span class="badge bg-secondary">
- </span>
-</button>
+ <div class="form-group">
+    <label for="exampleFormControlSelect1">Search</label>
+    <select onchange="location = this.value;" class="form-control" id="exampleFormControlSelect1">
+      <option value="{{path('personne.alls', {age: 30})}}"> Personnes 30ans</option>
+      <option value="{{path('personne.find', {ageMin: 30, ageMax: 50,})}}"> Personnes 30ans a 50ans</option>
+      <option value="{{path('personne.find', {ageMin: 30, ageMax: 40,})}}"> Personnes 30ans a 40ans</option>
+      3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
 <div class="row">
  <div class="col-12">
  
