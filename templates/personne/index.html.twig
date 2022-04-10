@@ -1,20 +1,60 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello PersonneController!{% endblock %}
-
+{% extends "template.html.twig" %}
+{% block title %}{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% include "message.html.twig" %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<button type="button" class="btn btn-primary">
+  <a href="{{path('personne.alls', {age: 30})}}"> Personnes 30ans</a> <span class="badge bg-secondary">
+ </span>
+</button>
+<div class="row">
+ <div class="col-12">
+ 
+  
+ 
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/opt/lampp/htdocs/dashboard/symfony6/test/src/Controller/PersonneController.php'|file_link(0) }}">src/Controller/PersonneController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/opt/lampp/htdocs/dashboard/symfony6/test/templates/personne/index.html.twig'|file_link(0) }}">templates/personne/index.html.twig</a></code></li>
-    </ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">📟</th>
+      <th scope="col">Firstname 🔥</th>
+      <th scope="col">name 👨‍🔧</th>
+      <th scope="col">age 🥯</th>
+            <th scope="col">kill 🤐</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for personne in personnes %}
+    <tr>
+      <th scope="row"><a href="{{path('personne.id', {id: personne.id}) }}">{{personne.id}}</a></th>
+      <td>{{personne.firstname}}</td>
+      <td>{{personne.name}}</td>
+      <td>{{personne.age}}</td>
+      <td><a href="{{path('personne.delete', {id: personne.id})}}"> <button type="button" class="btn btn-danger">kill</button></a></td>
+
+    </tr>
+ {% endfor %}    
+  </tbody>
+</table>
+
+<div class="container mt-3">
+{% if isPagination %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center mt-3">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+{% endif %}
+</div>
+ </div>
 </div>
 {% endblock %}
+
